@@ -1,0 +1,14 @@
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Examples.cs
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.Examples.exe
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.Examples.pdb
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\ResolveAssemblyReference.cache
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\Leleko.CSharp.Calc.Examples.exe
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\Leleko.CSharp.Calc.Examples.pdb
+D:\Documents\Documents\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\Leleko.CSharp.Calc.Examples.exe
+D:\Documents\Documents\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\Leleko.CSharp.Calc.Examples.pdb
+X:\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\Leleko.CSharp.Calc.Examples.exe
+X:\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\Leleko.CSharp.Calc.Examples.pdb
+X:\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Examples.cs
+X:\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.Examples.exe
+X:\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.Examples.pdb
+X:\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc.Example\obj\Release\ResolveAssemblyReference.cache

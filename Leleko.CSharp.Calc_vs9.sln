@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leleko.CSharp.Calc", "Leleko.CSharp.Calc\Leleko.CSharp.Calc.csproj", "{F9B3E677-5311-459E-89E9-C793D8D8C485}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leleko.CSharp.Calc.Exampes", "Leleko.CSharp.Calc.Example\Leleko.CSharp.Calc.Exampes.csproj", "{E57DD989-1D6A-447F-9F7D-8FFCDCAEBC61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9B3E677-5311-459E-89E9-C793D8D8C485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B3E677-5311-459E-89E9-C793D8D8C485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B3E677-5311-459E-89E9-C793D8D8C485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B3E677-5311-459E-89E9-C793D8D8C485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E57DD989-1D6A-447F-9F7D-8FFCDCAEBC61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E57DD989-1D6A-447F-9F7D-8FFCDCAEBC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E57DD989-1D6A-447F-9F7D-8FFCDCAEBC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E57DD989-1D6A-447F-9F7D-8FFCDCAEBC61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

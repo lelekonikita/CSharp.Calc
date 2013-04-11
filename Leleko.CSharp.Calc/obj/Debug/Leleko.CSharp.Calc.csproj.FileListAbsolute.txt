@@ -1,0 +1,6 @@
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.XML
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.dll
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Builds\Leleko.CSharp.Calc.pdb
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc\obj\Debug\ResolveAssemblyReference.cache
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc\obj\Debug\Leleko.CSharp.Calc.dll
+F:\MyDocuments\Программирование\DLLmake_2011\Leleko.CSharp.Calc\Leleko.CSharp.Calc\obj\Debug\Leleko.CSharp.Calc.pdb

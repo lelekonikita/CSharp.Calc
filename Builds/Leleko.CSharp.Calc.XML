@@ -1,0 +1,694 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Leleko.CSharp.Calc</name>
+    </assembly>
+    <members>
+        <member name="T:Leleko.CSharp.Calc.Internal.HelpFunctions">
+            <summary>
+            function forusing with double type
+            </summary>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.HelpMethods">
+            <summary>
+            methods info for Emit
+            </summary>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.HelpTypes">
+            <summary>
+            types
+            </summary>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Reflection">
+            <summary>
+            reflection
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.Calc.Internal.Reflection.GetDelegateFrom">
+            <summary>
+            IntPtr to Delegate converter
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.Calc.Internal.Reflection.CanCastTo">
+            <summary>
+            typeof(HandleFrom) is typeof(HandleTo)
+            </summary>
+        </member>
+        <member name="M:Leleko.CSharp.Calc.Internal.Reflection.Is(System.Type,System.Type)">
+            <summary>
+            {From} is {To}
+            </summary>
+            <param name="From">checking type</param>
+            <param name="To">base type or interface</param>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Reflection.GetDelegateForFunctionPointerInternal">
+            <summary>
+            convert IntPrt To [delegateType]
+            </summary>
+            <param name="ptr">function pointer</param>
+            <param name="delegateType">typeof(TDelegate)</param>
+            <returns>delegate or null</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Reflection.CanCast">
+            <summary>
+            typeof(HandleFrom) is typeof(HandleTo)
+            </summary>
+            <param name="handleFrom">checking type</param>
+            <param name="handleTo">base type or interface</param>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Func0">
+            <summary>
+            function with 0 arguments
+            </summary>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Func1">
+            <summary>
+            function with 1 argument
+            </summary>
+            <param name="arg1">argument #1</param>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Func2">
+            <summary>
+            function with 2 arguments
+            </summary>
+            <param name="arg1">argument #1</param>
+            <param name="arg2">argument #2</param>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Func3">
+            <summary>
+            function with 3 arguments
+            </summary>
+            <param name="arg1">argument #1</param>
+            <param name="arg2">argument #2</param>
+            <param name="arg3">argument #3</param>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.Calc.Internal.Func4">
+            <summary>
+            function with 4 arguments
+            </summary>
+            <param name="arg1">argument #1</param>
+            <param name="arg2">argument #2</param>
+            <param name="arg3">argument #3</param>
+            <param name="arg4">argument #4</param>
+            <returns>result</returns>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript">
+            <summary>
+            Calculator of the mathematical expression
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.StackMaxSize">
+            <summary>
+            maximum of evaluation stack size ( recommended 256-1024 )
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.NumArgsMaxCount">
+            <summary>
+            maximum of numbers arguments in functions count
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.buffer">
+            <summary>
+            for every thread - create buffer // need for multithreaded calculation
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.scriptKernel">
+            <summary>
+            initialization of scriptKernel
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.compileKernel">
+            <summary>
+            initialization of compileKernel
+            </summary>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Pow10Fast(System.Int32)">
+            <summary>
+            fast exponentiation
+            </summary>
+            <param name="degree">degree</param>
+            <returns>result</returns>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ArgsCount(System.Char*)">
+            <summary>
+            calculate number of function arguments
+            </summary>
+            <param name="pwcstr">pointer to area of the arguments of the functionn</param>
+            <returns>count of arguments in function</returns>
+            <exception cref="T:System.FormatException">close Bracket not found</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ExtractNameKey(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            extract [nameKey] from expression
+            </summary>
+            <param name="pnameKey">pointer to the [nameKey]</param>
+            <param name="pname">pointer to the name in the expression</param>
+            <param name="length">the number of characters in the name</param>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.TryParseFunction(Leleko.CSharp.CalcScript.OpCode*,System.Double*@,System.String,System.Char*,System.Int32,System.Collections.Generic.Dictionary{System.String,System.IntPtr})">
+            <summary>
+            try get function with [nameKey] signature
+            </summary>
+            <param name="pcopcodes">poiner to top opcode in evaluation stack</param>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="nameKey">buffer for store argument name</param>
+            <param name="pnameKey">pointer to [nameKey]</param>
+            <param name="argscount">number of function arguments</param>
+            <param name="functionList">list of added functions</param>
+            <returns>success</returns>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ParseValue(System.Char*@)">
+            <summary>
+            parse positive float64 value from chars stream onto evaluation stack
+            </summary>
+            <param name="lpwstr">reference to pointer to current position of parsing cursor in stream</param>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ParseConstantOrParameter(Leleko.CSharp.CalcScript.IKernel,System.Object,Leleko.CSharp.CalcScript.OpCode*@,System.Double*@,System.Char*,System.Char*,System.Int32)">
+            <summary>
+            parse constant value(if exist) or parameter onto evaluation stack 
+            </summary>
+            <param name="ikernel">kernel of calcscript evaluation</param>
+            <param name="param_a">special variant parameter</param>
+            <param name="lpopcodes">reference to pointer to top operand in stack</param>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="pnameKey">buffer for name</param>
+            <param name="pname">constant pointer to name begining</param>
+            <param name="length">constant pointer to nameKey begining</param>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ParseExpression(Leleko.CSharp.CalcScript.IKernel,Leleko.CSharp.CalcScript.Buffer,System.String,System.Char*,System.Object,System.Object)">
+            <summary>
+            expression parsing
+            </summary>
+            <param name="ikernel">kernel of calcscript evaluation</param>
+            <param name="buffer">buffer</param>
+            <param name="expression">mathematical expression</param>
+            <param name="pwcstr">constant pointer to expression begining</param>
+            <param name="param_a">special variant parameter</param>
+            <param name="param_b">special variant parameter</param>
+            <returns>result</returns>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Evaluate(System.String,System.Collections.Generic.IDictionary{System.String,System.Double},System.Collections.Generic.IDictionary{System.String,System.Collections.Generic.IList{System.Double}})">
+            <summary>
+            translate mathematical expression with parameters
+            </summary>
+            <param name="expression">mathematical expression</param>
+            <param name="scalarParams">parameters</param>
+            <param name="listParams">lists of parameters</param>
+            <returns>result</returns>
+            <exception cref="T:System.ArgumentNullException">expression is null</exception>
+            <exception cref="T:System.ArgumentNullException">scalarParams is null</exception>
+            <exception cref="T:System.FormatException">in the expression has a syntax error</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Compilate(System.Type,System.String)">
+            <summary>
+            compilate mathematical expression to delegate
+            </summary>
+            <param name="delegateType">typeof(TDelegate)</param>
+            <param name="expression">mathematical expression</param>
+            <returns>result</returns>
+            <exception cref="T:System.ArgumentNullException">expression is null</exception>
+            <exception cref="T:System.ArgumentNullException">delegateType is null</exception>
+            <exception cref="T:System.ArgumentException">delegateType is not typeof(Delegate)</exception>
+            <exception cref="T:System.ArgumentException">return type or one of parameters of delegate is not typeof(double)</exception>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript.Functions">
+            <summary>
+            functions, whose was added by user to use from CalcScript
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.Functions.functionList">
+            <summary>
+            functions, whose was added by user
+            </summary>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.GetEnumerator">
+            <summary>
+            return enumerator of the [funcNameKey, IntPtr]
+            </summary>
+            <returns>enumerator</returns>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.GetByName(System.String)">
+            <summary>
+            get function by {funcNameKey} = {funcName} + {argsCount}
+            </summary>
+            <param name="funcNameKey">{funcName} + {argsCount}</param>
+            <returns>result or null</returns>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.GetByName(System.String,System.Int32)">
+            <summary>
+            get function by {funcNameKey} = {funcName} + {argsCount}
+            </summary>
+            <param name="funcName">function name</param>
+            <param name="argsCount">count of arguments</param>
+            <returns>result or null</returns>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(System.Delegate)">
+            <summary>
+            Adding function to use
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func0)">
+            <summary>
+            Adding function to use
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func1)">
+            <summary>
+            Adding function to use
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func2)">
+            <summary>
+            Adding function to use
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func3)">
+            <summary>
+            Adding function to use
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func4)">
+            <summary>
+            Adding function to use
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(System.Delegate,System.String)">
+            <summary>
+            Adding function with choose name to use 
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <param name="functionName">special name for this function</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null or functionName is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func0,System.String)">
+            <summary>
+            Adding function with choose name to use 
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <param name="functionName">special name for this function</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null or functionName is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func1,System.String)">
+            <summary>
+            Adding function with choose name to use 
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <param name="functionName">special name for this function</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null or functionName is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func2,System.String)">
+            <summary>
+            Adding function with choose name to use 
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <param name="functionName">special name for this function</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null or functionName is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func3,System.String)">
+            <summary>
+            Adding function with choose name to use 
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <param name="functionName">special name for this function</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null or functionName is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.Functions.Set(Leleko.CSharp.Calc.Internal.Func4,System.String)">
+            <summary>
+            Adding function with choose name to use 
+            </summary>
+            <param name="delegate">function(count of parameters = [1;4], return type - double, params types - double</param>
+            <param name="functionName">special name for this function</param>
+            <exception cref="T:System.NullReferenceException">@delegate is null or functionName is null</exception>
+            <exception cref="T:System.ArgumentException">function is not complete conditions</exception>
+        </member>
+        <member name="P:Leleko.CSharp.CalcScript.Functions.NameCollection">
+            <summary>
+            get collection of the [funkNameKey]
+            </summary>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript.OpCode">
+            <summary>
+            operands for calculator
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode._Empty">
+            <summary>
+            empty operand, signalized about end of operand stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode._Open">
+            <summary>
+            signalized about opening bracket
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Starg_r8">
+            <summary>
+            stores the value on top of the vlaues stack in the parameters list at a specified name
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Stitem_r8">
+            <summary>
+            stores the value of list[i] on top of the vlaues stack in the parameters list at a specified name
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.And">
+            <summary>
+            computes the bitwise AND of two values and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Or">
+            <summary>
+            compute the bitwise complement of the two values on top of the stack and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Ceq">
+            <summary>
+            compares two values. If they are equal, the integer value 1 (float64) is pushed onto the evaluation stack; otherwise 0 (float64) is pushed onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.NotCeq">
+            <summary>
+            compares two values. If they are equal, the integer value 0 (float64) is pushed onto the evaluation stack; otherwise 1 (float64) is pushed onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Clt">
+            <summary>
+            compares two values. If the first value is less than the second, the integer value 1 (float64) is pushed onto the evaluation stack; otherwise 0 (float64) is pushed onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Ctg">
+            <summary>
+            compares two values. If the first value is more than the second, the integer value 1 (float64) is pushed onto the evaluation stack; otherwise 0 (float64) is pushed onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.CltCeq">
+            <summary>
+            compares two values. If the first value is less or equals than the second, the integer value 1 (float64) is pushed onto the evaluation stack; otherwise 0 (float64) is pushed onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.CtgCeq">
+            <summary>
+            compares two values. If the first value is more or equals than the second, the integer value 1 (float64) is pushed onto the evaluation stack; otherwise 0 (float64) is pushed onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Add">
+            <summary>
+            adds two values and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Sub">
+            <summary>
+            subtracts one value from another and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Mul">
+            <summary>
+            multiplies two values and pushes the result on the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Div">
+            <summary>
+            divides two values and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Rem">
+            <summary>
+            divides two values and pushes the remainder onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Pow">
+            <summary>
+            pushes a specified number raised to the specified power onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Not">
+            <summary>
+            computes the bitwise complement of value on top of the stack and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Neg">
+            <summary>
+            negates a value and pushes the result onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnAbs">
+            <summary>
+            Math.Abs(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnAcos">
+            <summary>
+            Math.Acos(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnAsin">
+            <summary>
+            Math.Asin(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnAtan">
+            <summary>
+            Math.Atan(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnCos">
+            <summary>
+            Math.Cos(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnCosh">
+            <summary>
+            Math.Cosh(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnExp">
+            <summary>
+            Math.Exp(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnLog">
+            <summary>
+            Math.Log(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnLog_2">
+            <summary>
+            Math.Log_2(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnLog10">
+            <summary>
+            Math.Log10(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnIf">
+            <summary>
+            If(condition,then,else)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnMax">
+            <summary>
+            Math.Max(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnMin">
+            <summary>
+            Math.Min(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnSin">
+            <summary>
+            Math.Sin(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnSinh">
+            <summary>
+            Math.Sinh(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnSqrt">
+            <summary>
+            Math.Sqrt(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnTan">
+            <summary>
+            Math.Tan(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.FnTanh">
+            <summary>
+            Math.Tanh(x)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Call0">
+            <summary>
+            invoke
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Call1">
+            <summary>
+            invoke()
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Call2">
+            <summary>
+            invoke(,)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Call3">
+            <summary>
+            invoke(,,)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Call4">
+            <summary>
+            invoke(,,,)
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Lditem_r8">
+            <summary>
+            pushes value(double) of parameter list[i] onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Ldarg_r8">
+            <summary>
+            pushes value(double) of parameter onto the evaluation stack
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.OpCode.Ldind_r8">
+            <summary>
+            pushes value(double) onto the evaluation stack
+            </summary>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript.Buffer">
+            <summary>
+            class buffer of calculation
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.Buffer._nameKey">
+            <summary>
+            buffer to store temporary name in the parsing process
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.Buffer._opcodes">
+            <summary>
+            buffer for emulation operands stack in parsing process
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.Buffer._values">
+            <summary>
+            buffer for emulation values stack in parsing process
+            </summary>
+        </member>
+        <member name="F:Leleko.CSharp.CalcScript.Buffer._indexDixtionary">
+            <summary>
+            buffer for store indexes of params
+            </summary>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript.IKernel">
+            <summary>
+            Kernel of CalcScript evaluation
+            </summary>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.IKernel.PushValue(System.Double*@,System.Double,System.Object)">
+            <summary>
+            push value in evaluation stack
+            </summary>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="value">value to adding</param>
+            <param name="param_a">special variant parameter</param>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.IKernel.CalcOpCodes(System.Double*@,Leleko.CSharp.CalcScript.OpCode,System.String,System.Char*,System.Object,System.Object)">
+            <summary>
+            caluculate operand
+            </summary>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="opcode">calculating operand</param>
+            <param name="nameKey">buffer for store argument name</param>
+            <param name="pnameKey">pointer to [nameKey]</param>
+            <param name="param_a">special variant parameter</param>
+            <param name="param_b">special variant parameter</param>
+            <exception cref="T:System.NotSupportedException">operand is not supported</exception>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript.ScriptKernel">
+            <summary>
+            ikernel for script evaluation
+            </summary>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ScriptKernel.PushValue(System.Double*@,System.Double,System.Object)">
+            <summary>
+            push value in evaluation stack
+            </summary>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="value">value to adding</param>
+            <param name="param_a">special variant parameter</param>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.ScriptKernel.CalcOpCodes(System.Double*@,Leleko.CSharp.CalcScript.OpCode,System.String,System.Char*,System.Object,System.Object)">
+            <summary>
+            caluculate operand
+            </summary>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="opcode">calculating operand</param>
+            <param name="nameKey">buffer for store argument name</param>
+            <param name="pnameKey">pointer to [nameKey]</param>
+            <param name="param_a">special variant parameter</param>
+            <param name="param_b">special variant parameter</param>
+            <exception cref="T:System.NotSupportedException">operand is not supported</exception>
+        </member>
+        <member name="T:Leleko.CSharp.CalcScript.CompileKernel">
+            <summary>
+            ikernel for delegate compilation
+            </summary>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.CompileKernel.PushValue(System.Double*@,System.Double,System.Object)">
+            <summary>
+            push value in evaluation stack
+            </summary>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="value">value to adding</param>
+            <param name="param_a">special variant parameter</param>
+        </member>
+        <member name="M:Leleko.CSharp.CalcScript.CompileKernel.CalcOpCodes(System.Double*@,Leleko.CSharp.CalcScript.OpCode,System.String,System.Char*,System.Object,System.Object)">
+            <summary>
+            caluculate operand
+            </summary>
+            <param name="lpvalues">reference to pointer to top value in evaluation stack</param>
+            <param name="opcode">calculating operand</param>
+            <param name="nameKey">buffer for store argument name</param>
+            <param name="pnameKey">pointer to [nameKey]</param>
+            <param name="param_a">special variant parameter</param>
+            <param name="param_b">special variant parameter</param>
+            <exception cref="T:System.NotSupportedException">operand is not supported</exception>
+        </member>
+    </members>
+</doc>
